@@ -1,0 +1,24 @@
+<launch>
+    <arg name="task_start_delay" default="5.0" />
+
+
+    <!-- Main script -->
+    <!-- node pkg="graph_optimization_mg_cs169" type="graph_optimization.py" name="main_optimizer" output="screen">
+        <param name="output_g2o_before" value="$(find graph_optimization_mg_cs169)/data/$(arg before).g2o"/>
+        <param name="output_g2o_after" value="$(find graph_optimization_mg_cs169)/data/$(arg after).g2o"/>
+        <param name="output_csv_before" value="$(find graph_optimization_mg_cs169)/data/$(arg before).csv"/>
+        <param name="output_csv_after" value="$(find graph_optimization_mg_cs169)/data/$(arg after).csv"/>
+        <param name="output_csv_ground" value="$(find graph_optimization_mg_cs169)/data/$(arg ground).csv"/>
+        <param name="covariance_pose" value="$(arg cov_pose)" />
+        <param name="covariance_scan" value="$(arg cov_scan)" />
+        <param name="distance" value="$(arg initial_wall)" />
+        <param name="ground" value="$(arg gnd_truth)" />
+    </node -->
+
+    <!-- Lidar launch file -->
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+
+    <!-- velodyne height node -->
+    <node pkg="velodyne_height_map" type="heightmap_node" name="heightmap" output="screen" />
+
+</launch>
