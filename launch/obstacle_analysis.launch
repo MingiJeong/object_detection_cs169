@@ -8,21 +8,25 @@
     <arg name="height" default="0.2" /> <!-- unit: meter -->
     <arg name="full" default="false" />
 
-    <arg name="use_velodyne_height" default="false"/>
-    <arg name="use_multi" default="true"/>
+    <arg name="use_velodyne_height" default="true"/>
+    <arg name="use_multi" default="false"/>
 
     <!-- velodyne height node -->
     <node if="$(arg use_velodyne_height)" pkg="velodyne_height_map" type="heightmap_node" name="heightmap" output="screen">
-            <param name="height_threshold" value="$(arg height)" />
-            <param name="full_clouds" value="$(arg full)" />
+            <param name="height_threshold" value="$(arg height)" /> <!-- threshold of height for the obstacle detection -->
+            <param name="full_clouds" value="$(arg full)" /> <!-- when using full point cloudes -->
     </node>
 
     <!-- multitracking node -->
-    <node if="$(arg use_multi)" pkg="multi_object_tracking_lidar" type="kf_tracker" name="kf_tracker" output="screen"/>
-    <node if="$(arg use_multi)" pkg="object_detection_cs169" type="scan_to_point_cloud.py" name="scan_to_point_cloud"/>
+    <node if="$(arg use_multi)" pkg="multi_object_tracking_lidar" type="kf_tracker" name="kf_tracker" />
+    <node if="$(arg use_multi)" pkg="object_detection_cs169" type="scan_to_point_cloud.py" name="scan_to_point_cloud"/> <!-- node for changing 2D to 3D point clouds -->
 
     <!-- rosbag play node -->
     <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/mingi/Desktop/$(arg record_bag4)"/>
+
+    <!-- analyzer node -->
+    <node if="$(arg use_multi)" pkg="object_detection_cs169" type="obstacle_detection_multi.py" name="data_analyzer" output="screen"/>
+
 
 
 </launch>

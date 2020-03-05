@@ -20,6 +20,7 @@ class Obstacle_detector():
         self.lidar_subscriber = rospy.Subscriber("velodyne_points", PointCloud2, self.lidar_callback)
         self.filtered_publisher = rospy.Publisher("filtered_cloud", PointCloud2, queue_size=10)
         self.rate = rospy.Rate(RATE)
+        self.input_msg = None
 
     def lidar_callback(self, msg):
         self.input_msg = msg
