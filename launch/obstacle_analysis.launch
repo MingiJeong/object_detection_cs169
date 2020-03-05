@@ -1,0 +1,28 @@
+<launch>
+    <!-- argument initializer -->
+    <arg name="task_start_delay" default="5.0" />
+    <arg name="record_bag1" default="_2020-03-04-23-15-34.bag" />
+    <arg name="record_bag2" default="_2020-03-04-23-16-42.bag" />
+    <arg name="record_bag3" default="_2020-03-04-23-17-19.bag" />
+    <arg name="record_bag4" default="_2020-03-04-23-17-51.bag" />
+    <arg name="height" default="0.2" /> <!-- unit: meter -->
+    <arg name="full" default="false" />
+
+    <arg name="use_velodyne_height" default="false"/>
+    <arg name="use_multi" default="true"/>
+
+    <!-- velodyne height node -->
+    <node if="$(arg use_velodyne_height)" pkg="velodyne_height_map" type="heightmap_node" name="heightmap" output="screen">
+            <param name="height_threshold" value="$(arg height)" />
+            <param name="full_clouds" value="$(arg full)" />
+    </node>
+
+    <!-- multitracking node -->
+    <node if="$(arg use_multi)" pkg="multi_object_tracking_lidar" type="kf_tracker" name="kf_tracker" output="screen"/>
+    <node if="$(arg use_multi)" pkg="object_detection_cs169" type="scan_to_point_cloud.py" name="scan_to_point_cloud"/>
+
+    <!-- rosbag play node -->
+    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/mingi/Desktop/$(arg record_bag4)"/>
+
+
+</launch>

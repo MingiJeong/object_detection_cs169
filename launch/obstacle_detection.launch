@@ -1,24 +1,21 @@
 <launch>
     <arg name="task_start_delay" default="5.0" />
+    <arg name="task_start_delay_log" default="7.0" />
+    <arg name="converted" default="converted_pc" />
 
 
-    <!-- Main script -->
-    <!-- node pkg="graph_optimization_mg_cs169" type="graph_optimization.py" name="main_optimizer" output="screen">
-        <param name="output_g2o_before" value="$(find graph_optimization_mg_cs169)/data/$(arg before).g2o"/>
-        <param name="output_g2o_after" value="$(find graph_optimization_mg_cs169)/data/$(arg after).g2o"/>
-        <param name="output_csv_before" value="$(find graph_optimization_mg_cs169)/data/$(arg before).csv"/>
-        <param name="output_csv_after" value="$(find graph_optimization_mg_cs169)/data/$(arg after).csv"/>
-        <param name="output_csv_ground" value="$(find graph_optimization_mg_cs169)/data/$(arg ground).csv"/>
-        <param name="covariance_pose" value="$(arg cov_pose)" />
-        <param name="covariance_scan" value="$(arg cov_scan)" />
-        <param name="distance" value="$(arg initial_wall)" />
-        <param name="ground" value="$(arg gnd_truth)" />
-    </node -->
+    <!-- Record node -->
+    <include file="$(find object_detection_cs169)/launch/logging.launch"/>
 
     <!-- Lidar launch file -->
-    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch"/>
+    <node pkg="tf" type="static_transform_publisher" name="rgbd_tf_broadcaster" args="0 0 0 0 0 0 map velodyne 100" />
 
     <!-- velodyne height node -->
-    <node pkg="velodyne_height_map" type="heightmap_node" name="heightmap" output="screen" />
+    <!-- node pkg="velodyne_height_map" type="heightmap_node" name="heightmap" output="screen" /-->
+
+    <!-- multitracking node -->
+    <!-- node pkg="multi_object_tracking_lidar" type="kf_tracker" name="kf_tracker" output="screen" launch-prefix="bash -c 'sleep $(arg task_start_delay); $0 $@' "/-->
+
 
 </launch>
