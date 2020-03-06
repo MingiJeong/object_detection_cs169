@@ -9,7 +9,7 @@
 
     <!-- Lidar launch file -->
     <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch"/>
-    <node pkg="tf" type="static_transform_publisher" name="rgbd_tf_broadcaster" args="0 0 0 0 0 0 map velodyne 100" />
+    <node pkg="tf" type="static_transform_publisher" name="tf_broadcaster" args="0 0 0 0 0 0 map velodyne 100" />
 
     <!-- velodyne height node -->
     <!-- node pkg="velodyne_height_map" type="heightmap_node" name="heightmap" output="screen" /-->

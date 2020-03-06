@@ -2,7 +2,7 @@
 
 # make sure to execute the following lines at the terminal before running this py file
 # source ~/catkin_ws/devel/setup.bash
-# chmod +x catkin_ws/src/obstacle_detection_cs169/scripts/obstacle_detection.py
+# chmod +x catkin_ws/src/obstacle_detection_cs169/scripts/velodyne_to_filteredcloud.py
 
 import rospy
 import math

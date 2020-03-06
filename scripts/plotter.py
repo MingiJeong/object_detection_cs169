@@ -30,6 +30,15 @@ GROUND_TRUTH_D = 0.4
 NAME = ['case2: straight walk', 'case3: running', 'case4: drunken driving']
 LINE_WIDTH = 1
 
+
+# ========================= figure 1 =========================================
+'''
+plotting of a csv file for "distaacne"
+Args:
+    path of csv file to be loaded
+Output:
+    png graph plot in a designated foler
+'''
 x = []
 y = []
 x2 =[]
@@ -42,6 +51,7 @@ with open(PATH_B,'r') as csvfile:
         x.append(row[0])
         y.append(float(row[1]))
 
+# change comments depending on the case4
 plt.plot(x,y, color='b', label ='case2: straight walk', lw= LINE_WIDTH)
 plt.title('case2: straight walk', fontsize=20)
 
@@ -54,21 +64,25 @@ plt.title('case2: straight walk', fontsize=20)
 plt.xlabel('Time [sec]', fontsize=15)
 plt.ylabel('Distance [m]', fontsize=15)
 # plt.legend(loc = 'lower right', fontsize=10)
-plt.xlim(0, 15)
+plt.xlim(0, 20)
 plt.xticks(fontsize=15)
 plt.yticks(fontsize=15)
 
+# change file name to be saved depending on the case
 fig.savefig(PLOT_PATH+'case2.png')
 
 # ========================= figure 1 =========================================
+
+# ========================= figure 2 =========================================
 fig2 = plt.figure()
 
-with open(PATH_B_CPA,'r') as csvfile:
+with open(PATH_D_CPA,'r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
     for row in plots:
         x2.append(row[0])
         y2.append(float(row[1]))
 
+# change comments depending on the case4
 plt.plot(x2,y2, color='b', label ='case2: straight walk', lw= LINE_WIDTH)
 plt.plot([0, x2[-1]], [GROUND_TRUTH_B, GROUND_TRUTH_B], label ='ground truth', color='k', LineStyle='--', lw= LINE_WIDTH+5)
 plt.title('case2: straight walk', fontsize=20)
@@ -89,7 +103,7 @@ plt.ylim(0,2)
 plt.xticks(fontsize=15)
 plt.yticks(fontsize=15)
 
-
+# change file name to be saved depending on the case
 fig2.savefig(PLOT_PATH+'case2_cpa.png')
 # ========================= figure 2 =========================================
 

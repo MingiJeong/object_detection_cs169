@@ -13,13 +13,24 @@ from sensor_msgs.msg import LaserScan, PointCloud2
 from visualization_msgs.msg import Marker, MarkerArray
 from timeit import default_timer as timer
 
-RATE = 15 # rospy.rate
+RATE = 10 # rospy.rate
+
+'''
+Originally designed for detecting a obstacle with a bounding box to to find which ID is me
+However, it turns out that this algorithm kept changing the ID and each marker point around the box is ID, i.e., not the center position of the obstacle.
+Hence, I could not this code for the actual usage, but I included for the project submission as this is a good lesson after several hours of struggling.
+There might be a way I can only follow the obstacle's ID or bounding box's center despite the dynamically changing number of variables.
+
+Args:
+    marker_array msgs for the obstacle data (bounding box)
+Output:
+    Which obstacle ID will be a detected obstacle we want to track (failed)
+'''
+
 # =========== Obstacle detector =========== #
 class Obstacle_detector():
     def __init__(self):
-        # subscriber and publisher
-        # self.lidar_subscriber = rospy.Subscriber("velodyne_points", PointCloud2, self.lidar_callback)
-        # self.filtered_publisher = rospy.Publisher("filtered_cloud", PointCloud2, queue_size=10)
+        # subscriber
         self.datmo_ukf_subscriber = rospy.Subscriber("marker_array", MarkerArray, self.datmo_callback)
         self.rate = rospy.Rate(RATE)
         self.current_msg = None
@@ -37,12 +48,10 @@ class Obstacle_detector():
         if self.current_time - self.before_time > 23 and self.initial_msg is not None:
             self.current_msg = msg
             for marker in self.current_msg.markers:
-                print("accessed")
                 distance = math.sqrt((marker.pose.position.x - 0)**2 + (marker.pose.position.y - 0)**2)
                 distance_list.append(distance_list)
-            print("min", min(distance_list))
 
-        ''' # it is not working properly
+        ''' # it is not working properly due to the aforementioned reasons.
         #marker finder
         self.current_time = timer()
         # print(self.before_time)

@@ -6,12 +6,17 @@ from sensor_msgs.msg import PointCloud2, LaserScan
 import laser_geometry.laser_geometry as lg
 import math
 
+'''
+This is the code from http://wiki.ros.org/laser_geometry
+The package converts the 2D laserscan to 3D point cloud
+Goal: we want to use 3D point cloud as an inpu for obstacle_anaylsis.launch
+
+'''
 rospy.init_node("laserscan_to_pointcloud")
 
 lp = lg.LaserProjection()
 
 pc_pub = rospy.Publisher("filtered_cloud", PointCloud2, queue_size=1)
-#pc_pub = rospy.Publisher("converted_pc", PointCloud2, queue_size=1)
 
 def scan_cb(msg):
     # convert the message of type LaserScan to a PointCloud2
@@ -23,8 +28,6 @@ def scan_cb(msg):
 
     # convert it to a generator of the individual points
     point_generator = pc2.read_points(pc2_msg)
-
-
     # we can access a generator in a loop
     sum = 0.0
     num = 0
@@ -32,15 +35,8 @@ def scan_cb(msg):
         if not math.isnan(point[2]):
             sum += point[2]
             num += 1
-    # we can calculate the average z value for example
     print(str(sum/num))
-
-    # or a list of the individual points which is less efficient
     point_list = pc2.read_points_list(pc2_msg)
-
-    # we can access the point list with an index, each element is a namedtuple
-    # we can access the elements by name, the generator does not yield namedtuples!
-    # if we convert it to a list and back this possibility is lost
     print(point_list[len(point_list)/2].x)
 
 
