@@ -52,8 +52,8 @@ The video of sample executions are
  - Set up the rosbag file number and directory for rosbag play node.
  - Depending on the mode you want, please make the default value as true and the rest of them as false.\
    For example, if I want to use DATMO method, I changed the last one as true.\
-      <arg name="use_datmo" default="true"/>\
-      <arg name="use_velodyne_height" default="false"/>\
+      <arg name="use_datmo" default="true"/>
+      <arg name="use_velodyne_height" default="false"/>
       <arg name="use_multi" default="false"/>
 3. roslaunch obstacle_detection_cs169 obstacle_analysis.launch
   - In case you use multi kf method, please set up in the saving folder and variable in "obstacle_detection_multi.py" line 19-32, line 141-143.
