@@ -12,18 +12,20 @@ I am pleased to take this class taught by Prof.Alberto Quattrini Li.
   2) DATMO : https://github.com/kostaskonkk/datmo.git
   3) velodyne_height_map : https://github.com/jack-oquin/velodyne_height_map
      (see the reference: https://wiki.ros.org/velodyne_height_map)
-2. Clone this repository in your workspace folder
+2. Clone this repository in your workspace folder\
     https://github.com/MingiJeong/object_detection_cs169.git
 
-3. Download bag files from my google drive
+3. Download bag files from my google drive\
     https://drive.google.com/drive/folders/1P5PHPqsVY72NdL-bud0JuwGFvaM6uBuo?usp=sharing
 
 4. catkin_make and source bashfile.
 
+![Screenshot](comprison.png)
+
 # In case of logging with Velodyne LiDAR
 If you are using Velodyne VLP-16 LiDAR for logging at first, do the followings.
-1. Make sure you have LiDAR's necessary package and driver as per the following links.
-    http://wiki.ros.org/velodyne_driver
+1. Make sure you have LiDAR's necessary package and driver as per the following links.\
+    http://wiki.ros.org/velodyne_driver\
     http://wiki.ros.org/velodyne/Tutorials/Getting%20Started%20with%20the%20Velodyne%20VLP16
 
 2. Set up the environment while you get connected with LiDAR.
@@ -39,19 +41,19 @@ The video of sample executions are
  - velodyne_height_map: https://drive.google.com/file/d/1lWAma1t1XdN2SpFjz0dANO0axM3GJ0DL/view?usp=sharing
  - multi kf: https://drive.google.com/file/d/1mdefRbLgPuZ7ZePZOPm-MqUxWEz3ng4c/view?usp=sharing
 
-1. Make the python scripts executable
-    chmod +x Yourworkspace/object_detection_cs169/scan_to_point_cloud.py
-    chmod +x Yourworkspace/object_detection_cs169/obstacle_detection_multi.py
-    chmod +x Yourworkspace/object_detection_cs169/obstacle_detection_directuse_3D.py
+1. Make the python scripts executable\
+    chmod +x Yourworkspace/object_detection_cs169/scan_to_point_cloud.py\
+    chmod +x Yourworkspace/object_detection_cs169/obstacle_detection_multi.py\
+    chmod +x Yourworkspace/object_detection_cs169/obstacle_detection_directuse_3D.py\
     chmod +x Yourworkspace/object_detection_cs169/plotter.py
 
 2. In the launch file "obstacle_detection.launch",
  - Set up the rosbag file number and directory for rosbag play node.
- - Depending on the mode you want, please make the default value as true and the rest of them as false.
-   For example, if I want to use DATMO method, I changed the last one as true.
-      <arg name="use_datmo" default="true"/>
-      <arg name="use_velodyne_height" default="false"/>
-      <arg name="use_multi" default="false"/>
+ - Depending on the mode you want, please make the default value as true and the rest of them as false.\
+   For example, if I want to use DATMO method, I changed the last one as true.\
+      <arg name="use_datmo" default="true"/>\
+      <arg name="use_velodyne_height" default="false"/>\
+      <arg name="use_multi" default="false"/>\
 3. roslaunch obstacle_detection_cs169 obstacle_analysis.launch
   - In case you use multi kf method, please set up in the saving folder and variable in "obstacle_detection_multi.py" line 19-32, line 141-143.
   - Given that multi kf method detected the obstacle in a different ID in each case, change the ID number accordingly in line 113.
@@ -61,11 +63,11 @@ The video of sample executions are
       - for case 4 it is number 2 (dark sky blue)
 4. You will see Rviz visualization immediately.
 5. In case of multi kf, you can analyze the data and potential collision cases as per CPA threshold you set in "obstacle_detection.launch".
-For plotting the data, do python Yourworkspace/src/object_detection_cs169/scripts/plotter.py
+For plotting the data, do python Yourworkspace/src/object_detection_cs169/scripts/plotter.py\
    - You need to change the csv path and save path accordingly in the plotter.py
 6. You are good to go!
 
 # References
-[1] https://doi.org/10.5281/zenodo.3559186
-[2] http://resolver.tudelft.nl/uuid:103fe186-925e-46f7-8275-d746e7c47600
+[1] https://doi.org/10.5281/zenodo.3559186 \
+[2] http://resolver.tudelft.nl/uuid:103fe186-925e-46f7-8275-d746e7c47600 \
 [3] https://wiki.ros.org/catkin/Tutorials/create_a_workspace
