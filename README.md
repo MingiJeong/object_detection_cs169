@@ -20,8 +20,8 @@ I am pleased to take this class taught by Prof.Alberto Quattrini Li.
 
 4. catkin_make and source bashfile.
 
-![header image](https://github.com/MingiJeong/object_detection_cs169/tree/master/drawing/comparison.png)
-
+The comparison of imported methods is given as the following table.
+![alt text](drawing/comparison.png)
 
 # In case of logging with Velodyne LiDAR
 If you are using Velodyne VLP-16 LiDAR for logging at first, do the followings.
