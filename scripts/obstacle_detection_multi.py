@@ -101,7 +101,6 @@ class Obstacle_detector():
         self.current_msg = msg
 
         # ID finder : from rosbag file it finds the id we want for a person
-        # ID 3 is white or pink
         # for case 1 it is number 2 or 4 (dark skyblue first and green): not used for algorithm's poor performance
         # for case 2 it is number 0 (black)
         # for case 3 it is number 4 (green)

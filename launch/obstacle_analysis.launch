@@ -5,8 +5,10 @@
     <arg name="record_bag2" default="_2020-03-04-23-16-42.bag" />
     <arg name="record_bag3" default="_2020-03-04-23-17-19.bag" />
     <arg name="record_bag4" default="_2020-03-04-23-17-51.bag" />
-    <arg name="height" default="0.2" /> <!-- unit: meter -->
+    <!-- parameter for velodyne_height_map method -->
+    <arg name="height" default="0.2" />
     <arg name="full" default="false" />
+    <!-- parameter for kf filter method -->
     <arg name="CPA_threshold" default="0.4"/>
 
     <!-- method which you want as per each case -->
