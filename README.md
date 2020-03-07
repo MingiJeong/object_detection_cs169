@@ -20,12 +20,13 @@ I am pleased to take this class taught by Prof.Alberto Quattrini Li.
 
 4. catkin_make and source bashfile.
 
-![Screenshot](comprison.png)
+![header image](https://github.com/MingiJeong/object_detection_cs169/tree/master/drawing/comparison.png)
+
 
 # In case of logging with Velodyne LiDAR
 If you are using Velodyne VLP-16 LiDAR for logging at first, do the followings.
 1. Make sure you have LiDAR's necessary package and driver as per the following links.\
-    http://wiki.ros.org/velodyne_driver\
+    http://wiki.ros.org/velodyne_driver \
     http://wiki.ros.org/velodyne/Tutorials/Getting%20Started%20with%20the%20Velodyne%20VLP16
 
 2. Set up the environment while you get connected with LiDAR.
@@ -53,7 +54,7 @@ The video of sample executions are
    For example, if I want to use DATMO method, I changed the last one as true.\
       <arg name="use_datmo" default="true"/>\
       <arg name="use_velodyne_height" default="false"/>\
-      <arg name="use_multi" default="false"/>\
+      <arg name="use_multi" default="false"/>
 3. roslaunch obstacle_detection_cs169 obstacle_analysis.launch
   - In case you use multi kf method, please set up in the saving folder and variable in "obstacle_detection_multi.py" line 19-32, line 141-143.
   - Given that multi kf method detected the obstacle in a different ID in each case, change the ID number accordingly in line 113.
@@ -62,8 +63,8 @@ The video of sample executions are
       - for case 3 it is number 4 (green)
       - for case 4 it is number 2 (dark sky blue)
 4. You will see Rviz visualization immediately.
-5. In case of multi kf, you can analyze the data and potential collision cases as per CPA threshold you set in "obstacle_detection.launch".
-For plotting the data, do python Yourworkspace/src/object_detection_cs169/scripts/plotter.py\
+5. In case of multi kf, you can analyze the data and potential collision cases as per CPA threshold you set in "obstacle_detection.launch". \
+For plotting the data, do python Yourworkspace/src/object_detection_cs169/scripts/plotter.py
    - You need to change the csv path and save path accordingly in the plotter.py
 6. You are good to go!
 
